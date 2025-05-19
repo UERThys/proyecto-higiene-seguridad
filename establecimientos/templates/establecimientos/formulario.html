@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario de Establecimiento{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Cargar establecimiento</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger small">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{% url 'lista_establecimientos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const provinciaSelect = document.getElementById("id_provincia");
+    const localidadSelect = document.getElementById("id_localidad");
+
+    provinciaSelect.addEventListener("change", function () {
+        const provinciaId = this.value;
+
+        fetch(`/establecimientos/ajax/cargar-localidades/?provincia_id=${provinciaId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Localidades recibidas:", data);  // <--- Aquí
+                // Limpiar las opciones actuales
+                localidadSelect.innerHTML = "";
+                // Agregar nuevas opciones
+                data.forEach(function (localidad) {
+                    const option = document.createElement("option");
+                    option.value = localidad.id;
+                    option.textContent = localidad.nombre;
+                    localidadSelect.appendChild(option);
+                });
+            });
+    });
+});
+</script>
+
+{% endblock %}
+

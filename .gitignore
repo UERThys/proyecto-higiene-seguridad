@@ -1,0 +1,42 @@
+# Entornos virtuales
+venv/
+env/
+.venv/
+*.env
+!/.env.example
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de base de datos (si usas SQLite para desarrollo local y no quieres versionarla)
+*.sqlite3
+db.sqlite3
+
+# Archivos de logs
+*.log
+
+# Archivos de configuración del editor (opcional, pero a veces útil)
+.vscode/
+.idea/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de dependencias (se gestionan con requirements.txt)
+# No necesitas subir la carpeta `node_modules` si usas herramientas frontend
+
+# Archivos de media (usualmente no se versionan, se sirven desde otro lado en producción)
+# media/
+
+# Archivos estáticos generados (si usas collectstatic, no necesitas versionar el directorio destino si lo generas en cada despliegue)
+# staticfiles/
+# static_root/
+
+# Secrets
+*.key
+*.secret
+secrets.ini
+*.pem

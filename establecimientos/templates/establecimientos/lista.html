@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Establecimientos{% endblock %}
+
+{% block content %}
+<a href="{% url 'crear_establecimiento' %}" class="btn btn-primary mb-3">+ Agregar nuevo establecimiento</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+        <th>Nombre</th>
+        <th>CUIT</th>
+        <th>Provincia</th>
+        <th>Localidad</th>
+        <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for est in establecimientos %}
+        <tr>
+        <td>{{ est.cuit }}</td>
+        <td>{{ est.nombre }}</td>        
+        <td>{{ est.provincia.nombre }}</td>
+        <td>{{ est.localidad.nombre }}</td>
+        <td>
+                <a href="{% url 'editar_establecimiento' est.id %}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{% url 'eliminar_establecimiento' est.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No hay establecimientos cargados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

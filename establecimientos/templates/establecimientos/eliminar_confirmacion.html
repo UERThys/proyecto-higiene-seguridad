@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Establecimiento{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger">
+    <h4 class="alert-heading">Confirmar eliminación</h4>
+    <p>¿Estás seguro que querés eliminar el establecimiento <strong>{{ establecimiento.nombre }}</strong> (CUIT: {{ establecimiento.cuit_empleador }})?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'lista_establecimientos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
