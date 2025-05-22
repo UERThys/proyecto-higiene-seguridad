@@ -1,0 +1,27 @@
+# Archivos de texto: convertir CRLF a LF en el repositorio
+* text=auto
+
+# CSVs, aseguramos formato de texto estándar
+*.csv text
+
+# Archivos de código comunes
+*.py     text
+*.js     text
+*.ts     text
+*.html   text
+*.css    text
+*.json   text
+*.md     text
+*.yml    text
+*.yaml   text
+*.xml    text
+
+# Archivos de imagen y binarios: sin conversión
+*.jpg    binary
+*.jpeg   binary
+*.png    binary
+*.gif    binary
+*.ico    binary
+*.pdf    binary
+*.zip    binary
+*.exe    binary

@@ -1,0 +1,21 @@
+codigo,descripcion
+011110,"Cultivo de cereales (excepto arroz), oleaginosas y forrajeras"
+011120,Cultivo de arroz
+011130,"Cultivo de hortalizas, raíces y tubérculos"
+011140,Cultivo de tabaco
+011150,Cultivo de plantas para preparación de bebidas
+011160,"Cultivo de especias y de plantas aromáticas, medicinales y farmacéuticas"
+011190,"Cultivo de flores, plantas ornamentales y productos de vivero"
+011200,Cultivo de caña de azúcar
+011300,"Cultivo de frutas, frutos secos, plantas con frutos oleaginosos y frutas tropicales"
+011400,Producción de semillas certificadas
+012111,Cría de ganado bovino para leche
+012112,Cría de ganado bovino para carne
+012120,Cría de caballos y otros equinos
+012130,Cría de ovejas y cabras
+012140,Cría de cerdos
+012150,Cría de aves de corral
+012160,Apicultura
+012170,Cunicultura y cría de animales no clasificados en otra parte
+013000,"Actividades de servicios agrícolas y ganaderos, excepto veterinarios"
+014000,Caza ordinaria y mediante trampas y actividades de servicios conexas

@@ -1,0 +1,43 @@
+codigo,descripcion
+011110,"Cultivo de cereales (excepto arroz), oleaginosas y forrajeras"
+011120,Cultivo de arroz
+011130,"Cultivo de hortalizas, raíces y tubérculos"
+011140,Cultivo de tabaco
+011150,Cultivo de plantas para preparación de bebidas
+011160,"Cultivo de especias y de plantas aromáticas, medicinales y farmacéuticas"
+011170,Cultivo de flores y plantas ornamentales
+011190,Otros cultivos temporales n.c.p.
+011200,Cultivo de caña de azúcar
+011300,"Cultivo de frutas, frutos secos y semillas oleaginosas"
+011400,Producción de semillas certificadas
+012111,Cría de ganado bovino para leche
+012112,Cría de ganado bovino para carne
+012120,Cría de caballos y otros equinos
+012130,Cría de ovejas y cabras
+012140,Cría de cerdos
+012150,Cría de aves de corral
+012160,Apicultura
+012170,Cunicultura y cría de otros animales n.c.p.
+013000,Actividades de apoyo a la agricultura y ganadería
+014000,"Caza ordinaria y mediante trampas, y actividades de servicios conexas"
+015000,Pesca y acuicultura
+016100,Extracción de petróleo crudo
+016200,Extracción de gas natural
+016300,Extracción de minerales metalíferos
+017000,Industria manufacturera
+018000,"Suministro de electricidad, gas, vapor y aire acondicionado"
+019000,"Distribución de agua, evacuación y tratamiento de aguas residuales"
+020000,Construcción
+030000,Comercio al por mayor y al por menor
+040000,Transporte y almacenamiento
+050000,Servicios de alojamiento y servicios de comida
+060000,Información y comunicaciones
+070000,Actividades financieras y de seguros
+080000,Actividades inmobiliarias
+090000,"Actividades profesionales, científicas y técnicas"
+100000,Servicios administrativos y de apoyo
+110000,Administración pública y defensa; planes de seguridad social
+120000,Educación
+130000,Servicios de salud humana y asistencia social
+140000,"Actividades artísticas, entretenimiento y recreación"
+150000,Otras actividades de servicios

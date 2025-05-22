@@ -120,5 +120,23 @@ class CodigoPostal(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.provincia.nombre})"'''
 
+from django.db import models
+
+class ActividadCLAE(models.Model):
+    codigo = models.CharField(max_length=6, unique=True)
+    descripcion = models.TextField()
+
+    clae3 = models.CharField(max_length=3, null=True, blank=True)
+    clae3_desc = models.TextField(null=True, blank=True)
+
+    clae2 = models.CharField(max_length=2, null=True, blank=True)
+    clae2_desc = models.TextField(null=True, blank=True)
+
+    letra = models.CharField(max_length=1, null=True, blank=True)
+    letra_desc = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.codigo} - {self.descripcion}"
+
 
 
