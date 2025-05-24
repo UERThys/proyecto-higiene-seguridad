@@ -1,5 +1,5 @@
 from django.db import models
-from ubicaciones.models import Provincia
+from ubicaciones.models import Provincia, ActividadCLAE
 
 # Tabla auxiliar para CIIU
 class CIIU(models.Model):
@@ -28,43 +28,57 @@ class Localidad(models.Model):
 
 class Empresa(models.Model):
     cuit = models.CharField(max_length=11, unique=True)
-    razon_social = models.CharField(max_length=255)
+    #nombre = models.CharField(max_length=255)  # Razon social será ahora 'nombre'
+    nombre_fantasia = models.CharField(max_length=255)  # Renombrado a nombre_fantasia
     tipo_organismo = models.IntegerField()
     organismo = models.IntegerField()
+    claes = models.ManyToManyField('ActividadCLAE', related_name='empresas', blank=True)
+
+    def __str__(self):
+        return self.nombre
+
+    def obtener_datos_de_arca(self):
+        # Lógica para consumir el WS de ARCA usando el CUIT
+        # Por ejemplo, utilizando la librería requests para acceder a un WS SOAP
+        import requests
+        url = "https://ws.aca.gov.ar/servicio"  # URL de ARCA (cambiar según corresponda)
+        headers = {
+            "Authorization": "Bearer tu_token_aqui",
+            "Content-Type": "application/xml"
+        }
+        response = requests.get(url, params={"cuit": self.cuit}, headers=headers)
+        
+        if response.status_code == 200:
+            datos_empresa = response.json()  # O según el formato de respuesta del WS
+            return datos_empresa
+        else:
+            return None
 
 class Establecimiento(models.Model):
-    #empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name="establecimientos")
     empresa = models.ForeignKey('Empresa', on_delete=models.CASCADE, null=True, blank=True)
     cuit = models.CharField(max_length=11, default="00000000000")
-    numero_establecimiento = models.IntegerField(default="0000")
+    numero_establecimiento = models.IntegerField(default=0)  # Corregido a tipo entero
     tipo_establecimiento = models.SmallIntegerField()
     descripcion = models.TextField(default="Sin nombre")
-    nombre = models.CharField(max_length=255)  # este es "nombre_fantasia"
+    nombre = models.CharField(max_length=255)
     calle = models.CharField(max_length=255, default="Sin calle")
     interseccion = models.CharField(max_length=255, blank=True, null=True)
-    #altura = models.DecimalField(max_digits=10, decimal_places=2)
     altura = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     piso = models.CharField(max_length=10, blank=True, null=True)
     dpto = models.CharField(max_length=10, blank=True, null=True)
     localidad = models.ForeignKey(Localidad, on_delete=models.PROTECT)
-    localidad_nombre = models.CharField(max_length=100,default="Sin nombre")
+    localidad_nombre = models.CharField(max_length=100, default="Sin nombre")
     provincia = models.ForeignKey(Provincia, on_delete=models.PROTECT)
-    provincia_nombre = models.CharField(max_length=100,default="Sin nombre")
+    provincia_nombre = models.CharField(max_length=100, default="Sin nombre")
     cpa = models.CharField(max_length=10, blank=True, null=True)
     cp = models.CharField(max_length=10, blank=True, null=True)
-    principal = models.BooleanField(default="0")
+    principal = models.BooleanField(default=False)  # Mejor usar False en vez de "0"
     latitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
     longitud = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
-    tipo_organismo = models.IntegerField(default="0")
-    organismo = models.IntegerField(default="0000")
-    temporal = models.BooleanField(default="0")
+    tipo_organismo = models.IntegerField(default=0)
+    organismo = models.IntegerField(default=0)  # Cambié a 0 como valor por defecto
+    temporal = models.BooleanField(default=False)
     motivo_baja = models.IntegerField(blank=True, null=True)
-
-    # Campos aún no incluidos:
-    # codigos_art = ...
-    # vinculado = ...
-    # codigo_est_vinculado = ...
-    # custom_fields = ...
 
     def __str__(self):
         return f"{self.nombre} - {self.cuit}"
@@ -78,6 +92,12 @@ class EstablecimientoEmpresa(models.Model):
     tipo_organismo = models.IntegerField()
     organismo = models.IntegerField()
     motivo_baja = models.IntegerField(blank=True, null=True)
+    
+    # Se agrega un valor por defecto para 'clae'
+    clae = models.ForeignKey(ActividadCLAE, on_delete=models.PROTECT, default=1)
+
+    def __str__(self):
+        return f"{self.cuit} - {self.ciiu.descripcion}"
 
 
 
@@ -119,8 +139,6 @@ class CodigoPostal(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.provincia.nombre})"'''
-
-from django.db import models
 
 class ActividadCLAE(models.Model):
     codigo = models.CharField(max_length=6, unique=True)
